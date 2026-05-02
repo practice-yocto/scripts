@@ -24,7 +24,7 @@ WORKSPACE_BASE=$( builtin cd "$( dirname "$dir" )" > /dev/null && pwd)
 # set the build directory for the build system
 BUILD_DIR=${BUILD_DIR:-build}
 
-# backup DL_DIR to SOURCE_MIRROR for later use 
+# backup DL_DIR to SOURCE_MIRROR for later use
 function do_source_mirror() {
 	local source_mirror=$(bitbake-getvar --quiet --value SOURCE_MIRROR_URL)
 	local dl_dir=$(bitbake-getvar --quiet --value DL_DIR)
@@ -35,7 +35,7 @@ function do_source_mirror() {
 	rsync --archive --verbose --ignore-existing --exclude '**/git2/' --exclude '*done' ${dl_dir}/ ${source_mirror}
 }
 
-# backup SSTATE_DIR to SSTATE_MIRRORS for later use 
+# backup SSTATE_DIR to SSTATE_MIRRORS for later use
 function do_sstate_mirror() {
 	local sstate_mirror=$(bitbake-getvar --quiet --value SSTATE_MIRRORS)
 	local sstate_cache=$(bitbake-getvar --quiet --value SSTATE_DIR)
@@ -48,4 +48,5 @@ function do_sstate_mirror() {
 
 # source the build environment
 export TEMPLATECONF=${WORKSPACE_BASE}/layers/meta-practice/template/
+export MACHINE="practice"
 source poky/oe-init-build-env ${WORKSPACE_BASE}/${BUILD_DIR}

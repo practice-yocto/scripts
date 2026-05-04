@@ -43,7 +43,7 @@ function do_sstate_mirror() {
 	sstate_mirror=$(echo "${sstate_mirror}" | sed 's|.*file://||; s|/PATH||')
 	echo "sstate_mirror: ${sstate_mirror}"
 	mkdir -p ${sstate_mirror}
-	rsync --archive --verbose ${sstate_cache}/ ${sstate_mirror}
+	rsync --archive --verbose --delete --exclude "*.lock" ${sstate_cache}/ ${sstate_mirror}
 }
 
 # source the build environment

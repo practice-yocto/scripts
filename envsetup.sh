@@ -49,4 +49,5 @@ function do_sstate_mirror() {
 # source the build environment
 export TEMPLATECONF=${WORKSPACE_BASE}/layers/meta-practice/template/
 export MACHINE="practice"
+export DISTRO="practice-distro"
 source poky/oe-init-build-env ${WORKSPACE_BASE}/${BUILD_DIR}
